@@ -1,0 +1,97 @@
+* {
+  box-sizing: border-box;
+  color: #333;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #ccc;
+}
+
+input,
+select,
+button {
+  padding: 0.3rem;
+  outline: 0;
+  border: 0;
+  border-radius: 0.5rem;
+}
+
+.wrapper {
+  background-color: #fff;
+  width: 1200px;
+  margin: 0 auto;
+  padding: 0.5rem;
+}
+
+.db-connect-info {
+  padding: 0.4rem;
+  border-bottom: 1px solid #ccc;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.db-connect-info input,
+.workspaces input {
+  field-sizing: content;
+  background-color: #eee;
+}
+
+label[for="db-user"] {
+  margin-left: 2rem;
+}
+
+#db-connect-btn {
+  position: absolute;
+  right: 1rem;
+}
+
+.table-column-list {
+  display: grid;
+  grid-template-columns: 20rem 1fr;
+}
+
+.table-column-list > ul {
+  height: 700px;
+  overflow: auto;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.table-column-list > ul > li {
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.table-column-list > ul > li:nth-of-type(2n) {
+  background-color: #eee;
+}
+
+.table-column-list > ul > li.active {
+  background-color: #f006;
+  font-weight: bold;
+}
+
+.workspaces {
+  display: flex;
+  flex-direction: column;
+}
+
+.workspaces div {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+.workspaces div label {
+  margin-right: 1rem;
+}
+
+.workspaces div input {
+  margin-right: 2rem;
+}

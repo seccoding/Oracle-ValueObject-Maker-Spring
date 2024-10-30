@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Oracle VO Maker</title>
+    <link rel="stylesheet" type="text/css" href="/common.css" />
+    <script type="text/javascript" src="/common.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="db-connect-info">
+        jdbc:oracle:thin:@<input
+          type="text"
+          id="db-url"
+          placeholder="localhost"
+          value="localhost"
+        />:<input
+          type="text"
+          id="db-port"
+          placeholder="1521"
+          value="1521"
+        />:<input type="text" id="db-database" placeholder="XE" value="XE" />
+
+        <label for="db-user">Username:</label>
+        <input type="text" id="db-user" placeholder="username" />
+        <label for="db-password">Password:</label>
+        <input type="password" id="db-password" placeholder="password" />
+
+        <button type="button" id="db-connect-btn">연결</button>
+      </div>
+
+      <div class="table-column-list">
+        <ul class="table-list"></ul>
+        <ul class="column-list"></ul>
+      </div>
+
+      <div class="workspaces">
+        <div>
+          <label for="workspace">Workspace</label>
+          <input type="text" id="workspace" placeholder="Workspace" />
+
+          <label for="package">Package</label>
+          <input type="text" id="package" placeholder="com.domain..." />
+        </div>
+        <div>
+          <label for="tableName">Table name</label>
+          <input type="text" id="tableName" placeholder="tablename" />
+
+          <label for="makePackages"
+            >web, service, dao 패키지 동시 생성하기?</label
+          >
+          <input type="checkbox" id="makePackages" value="Y" />
+        </div>
+
+        <button type="button" id="make-vo-btn">생성하기</button>
+      </div>
+    </div>
+  </body>
+</html>
