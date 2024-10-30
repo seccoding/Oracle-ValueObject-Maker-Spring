@@ -58,12 +58,16 @@ window.onload = function () {
       });
 
       const tableList = await connectResponse.json();
-      if (tableList && confirm("접속 정보를 저장할까요?")) {
+      if (tableList.tables && confirm("접속 정보를 저장할까요?")) {
         sessionStorage.setItem("dbUrl", dbUrl);
         sessionStorage.setItem("dbPort", dbPort);
         sessionStorage.setItem("dbDatabase", dbDatabase);
         sessionStorage.setItem("dbUsername", dbUsername);
         sessionStorage.setItem("dbPassword", dbPassword);
+      }
+      else if (tableList.error) {
+        alert(tableList.error);
+        return;
       }
 
       var tableListDom = document.querySelector(".table-list");
@@ -96,11 +100,7 @@ window.onload = function () {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                dbUrl,
-                dbPort,
-                dbDatabase,
                 dbUsername,
-                dbPassword,
                 tableName: this.dataset.tableName,
               }),
             });
@@ -120,18 +120,22 @@ window.onload = function () {
     }
   });
 
+  document.querySelector("#makePackages").addEventListener("change", function() {
+    document.querySelector("#className").style.display = this.checked ? "inline-block" : "none";
+    if ( this.checked ) {
+        document.querySelector("#className").focus();
+    }
+  });
+  
   document
     .querySelector("#make-vo-btn")
     .addEventListener("click", async function () {
-      const dbUrl = document.querySelector("#db-url").value;
-      const dbPort = document.querySelector("#db-port").value;
-      const dbDatabase = document.querySelector("#db-database").value;
       const dbUsername = document.querySelector("#db-user").value;
-      const dbPassword = document.querySelector("#db-password").value;
 
       const workspace = document.querySelector("#workspace").value;
       const package = document.querySelector("#package").value;
       const tableName = document.querySelector("#tableName").value;
+      const classPrefix = document.querySelector("#className").value;
       const makePackages = (
         document.querySelector("#makePackages:checked") || { value: "N" }
       ).value;
@@ -158,15 +162,12 @@ window.onload = function () {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            dbUrl,
-            dbPort,
-            dbDatabase,
             dbUsername,
-            dbPassword,
             workspace,
             package,
             tableName,
             makePackages,
+            classPrefix,
           }),
         });
 

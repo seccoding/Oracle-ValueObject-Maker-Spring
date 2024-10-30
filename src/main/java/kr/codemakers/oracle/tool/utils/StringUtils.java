@@ -4,6 +4,14 @@ public abstract class StringUtils {
 
 	private StringUtils() {}
 	
+	public static String toClassName(String name) {
+		return name.substring(0, 1).toUpperCase() + name.substring(1);
+	}
+	
+	public static String toFieldName(String name) {
+		return name.substring(0, 1).toLowerCase() + name.substring(1);
+	}
+	
 	public static String toCamelCase(boolean isFirstUpper, String capitalCase) {
 		String camelString = capitalCase.toLowerCase();
 		
@@ -18,7 +26,7 @@ public abstract class StringUtils {
 		}
 		
 		if (isFirstUpper) {
-			camelString = camelString.substring(0, 1).toUpperCase() + camelString.substring(1);
+			camelString = toClassName(camelString);
 		}
 		
 		return camelString;
