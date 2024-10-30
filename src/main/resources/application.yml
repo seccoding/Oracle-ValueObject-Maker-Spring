@@ -1,14 +1,3 @@
 spring:
   application:
     name: OracleVOMaker
-  # 데이터베이스 연결을 위한 설정
-#  datasource:
-#    url: jdbc:oracle:thin:@localhost:1521:XE
-#    driver-class-name: oracle.jdbc.driver.OracleDriver
-#    username: SPRING_BOOT
-#    password: 1234
-# JSP를 사용하기 위해 JSP 파일들의 경로를 설정. -> WebConfig.java로 설정 이동함.
-#  mvc:
-#    view:
-#      prefix: /WEB-INF/views/
-#      suffix: .jsp
