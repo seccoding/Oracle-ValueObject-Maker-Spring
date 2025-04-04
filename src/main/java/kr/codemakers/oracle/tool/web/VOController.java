@@ -58,6 +58,7 @@ public class VOController {
 		String className = StringUtils.toCamelCase(true, table.getTableName());
 		
 		String path = param.get("workspace") + "/src/main/java/";
+		String resourcePath = param.get("workspace") + "/src/main/resources/";
 		String voPath = path + param.get("package").replace(".", "/") + "/vo";
 
 		
@@ -65,6 +66,7 @@ public class VOController {
 			String webPath = path + param.get("package").replace(".", "/") + "/web";
 			String serviceImplPath = path + param.get("package").replace(".", "/") + "/service/impl";
 			String daoImplPath = path + param.get("package").replace(".", "/") + "/dao/impl";
+			String daoImplMapperPath = resourcePath + param.get("package").replace(".", "/") + "/dao/impl/mapper";
 			
 			String servicePath = path + param.get("package").replace(".", "/") + "/service";
 			String daoPath = path + param.get("package").replace(".", "/") + "/dao";
@@ -72,6 +74,7 @@ public class VOController {
 			FileUtils.mkdirs(webPath);
 			FileUtils.mkdirs(serviceImplPath);
 			FileUtils.mkdirs(daoImplPath);
+			FileUtils.mkdirs(daoImplMapperPath);
 			
 			if (param.get("classPrefix").trim().length() > 0) {
 				String prefix = StringUtils.toClassName(param.get("classPrefix").trim());
@@ -95,6 +98,10 @@ public class VOController {
 				File daoImplFile = new File(daoImplPath, prefix + "DaoImpl.java");
 				String daoImplContent = FileUtils.makeDaoImplContent(daoImplFile, prefix);
 				FileUtils.write(daoImplFile, daoImplContent);
+				
+				File daoImplMapperFile = new File(daoImplMapperPath, prefix + "DaoImplMapper.xml");
+				String daoImplMapperContent = FileUtils.makeDaoImplMapperContent(daoImplPath + "/" + prefix + "DaoImpl");
+				FileUtils.write(daoImplMapperFile, daoImplMapperContent);
 			}
 		}
 

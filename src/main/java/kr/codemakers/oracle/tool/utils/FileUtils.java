@@ -214,6 +214,8 @@ public abstract class FileUtils {
 		java.append("@Repository\n");
 		java.append("public class " + className + "DaoImpl extends SqlSessionDaoSupport implements " + className + "Dao {\n");
 		java.append("\n");
+		java.append("    private final String NAME_SPACE = \"" + packagePath + "." + className + "DaoImpl.\";\n");
+		java.append("\n");
 		java.append("    @Autowired\n");
 		java.append("    @Override\n");
 		java.append("    public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {\n");
@@ -224,5 +226,21 @@ public abstract class FileUtils {
 		java.append("}");
 
 		return java.toString();
+	}
+	
+	public static String makeDaoImplMapperContent(String namespace) {
+		String path = namespace.replace("\\", "/");
+		String packagePath = path.substring(path.indexOf("/src/main/java/") + "/src/main/java/".length()).replace("/",
+				".");
+		
+		StringBuffer mapper = new StringBuffer();
+		mapper.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+		mapper.append("<!DOCTYPE mapper\n");
+		mapper.append("  PUBLIC \"-//mybatis.org//DTD Mapper 3.0//EN\"\n");
+		mapper.append("  \"https://mybatis.org/dtd/mybatis-3-mapper.dtd\">\n");
+		mapper.append("<mapper namespace=\""+packagePath+"\">\n");
+		mapper.append("    \n");
+		mapper.append("</mapper>");
+		return mapper.toString();
 	}
 }
